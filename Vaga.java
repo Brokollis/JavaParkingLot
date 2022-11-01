@@ -7,21 +7,23 @@ public class Vaga implements GetId {
     private String tipo;
     private String tamanho;
     private int preco;
-    private ArrayList<Veiculo> veiculos;
-    private ArrayList<Locacao> locacoes;
+    private int idLocacao;
+    private Locacao locacao;
+    // private ArrayList<Veiculo> veiculos;
+    // private ArrayList<Locacao> locacoes;
 
     private static ArrayList<Vaga> vagas = new ArrayList<>();
 
-    public Vaga(int numero, String tipo, String tamanho, int preco) {
+    public Vaga(int numero, String tipo, String tamanho, int preco, Locacao locacao) {
         this.id = GetId.getNextId(vagas);
         this.numero = numero;
         this.tipo = tipo;
         this.tamanho = tamanho;
         this.preco = preco;
 
-        this.veiculos = new ArrayList<>();
-        this.locacoes = new ArrayList<>();
-
+        // this.veiculos = new ArrayList<>();
+        // this.locacoes = new ArrayList<>();
+        locacao.setVagas(this);
         vagas.add(this);
     }
 
@@ -44,6 +46,12 @@ public class Vaga implements GetId {
         return preco;
     }
 
+    public Locacao getLocacao() {
+        return locacao;
+    }
+
+
+
     public void setId(int id) {
         this.id = id;
     }
@@ -64,25 +72,29 @@ public class Vaga implements GetId {
         this.preco = preco;
     }   
 
-    public ArrayList<Veiculo> getVeiculos() {
-        return veiculos;
-    }
+    public void setLocacao(Locacao locacao) {
+        this.locacao = locacao;
+    } 
 
-    public void setAnimal(Veiculo veiculo) {
-        this.veiculos.add(veiculo);
-    }
-
-    public ArrayList<Locacao> getLocacoes() {
-        return locacoes;
-    }
-
-    public void setLimpezas(Locacao locacao) {
-        this.locacoes.add(locacao);
-    }
-
-    public static ArrayList<Vaga> getVagas() {
+    public ArrayList<Vaga> getVagas() {
         return vagas;
     }
+
+    // public void setAnimal(Veiculo veiculo) {
+    //     this.veiculos.add(veiculo);
+    // }
+
+    // public ArrayList<Locacao> getLocacoes() {
+    //     return locacoes;
+    // }
+
+    // public void setLimpezas(Locacao locacao) {
+    //     this.locacoes.add(locacao);
+    // }
+
+    // public static ArrayList<Vaga> getVagas() {
+    //     return vagas;
+    // }
 
     public static Vaga getVaga(int id) throws Exception {
         for (Vaga vaga : vagas) {
@@ -93,7 +105,7 @@ public class Vaga implements GetId {
         throw new Exception("Vaga não encontrada");
     }
 
-    public static void removeJaula(int id) throws Exception {
+    public static void removeVaga(int id) throws Exception {
         Vaga vaga = getVaga(id);
         vagas.remove(vaga);
     }
@@ -104,7 +116,8 @@ public class Vaga implements GetId {
             + "Numero=" + numero + "\n"
             + "Tipo=" + tipo + "\n"
             + "Tamanho=" + tamanho + "\n"
-            + "Preco=" + preco + "\n";
+            + "Preco=" + preco + "\n"
+            + "Locação=" + locacao + "\n";
     }
 
 }

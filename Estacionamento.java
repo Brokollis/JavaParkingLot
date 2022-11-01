@@ -67,7 +67,7 @@ public class Estacionamento {
 
         public static void cadastrarVeiculo(Scanner scanner) {
             System.out.println("Cadastrar Veiculo");
-            System.out.println("Informe o nome do Veiculo:");
+            System.out.println("Informe o nome do modelo do Veiculo:");
             String nome = scanner.next();
     
             System.out.println("Digite o tipo: ([M] Moto; [C] Carro; [B] Bicicleta)");
@@ -75,58 +75,56 @@ public class Estacionamento {
     
             switch (tipo) {
                 case "M":
-                    System.out.println("Informe o tempo de gestação:");
-                    int gestacao = scanner.nextInt();
-                    System.out.println("Informe o número da jaula:");
-                    int idJaula = scanner.nextInt();
+                    System.out.println("Informe a placa da moto:");
+                    String placaMoto = scanner.next();
+                    System.out.println("Informe a quantidade de cilindradas da moto:");
+                    int cilindrada = scanner.nextInt();
                     try {
-                        Jaula jaula = Jaula.getJaula(idJaula);
-                        Mamifero mamifero = new Mamifero(
+                        // Jaula jaula = Jaula.getJaula(idJaula);
+                        Moto moto = new Moto(
                             nome,
-                            especie,
-                            jaula,
-                            gestacao
+                            placaMoto,
+                            cilindrada
+                           
                         );
-                        System.out.println("Mamífero cadastrado com sucesso!");
-                        System.out.println(mamifero);
+                        System.out.println("Moto cadastrada com sucesso!");
+                        System.out.println(moto);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                     break;
                 case "C":
-                    System.out.println("Informe o habitat:");
-                    String habitat = scanner.next();
-                    System.out.println("Informe o número da jaula:");
-                    idJaula = scanner.nextInt();
+                    System.out.println("Informe a placa do carro:");
+                    String placaCarro = scanner.next();
+                    System.out.println("Informe a cor do carro:");
+                    String corCarro = scanner.next();
                     try {
-                        Jaula jaula = Jaula.getJaula(idJaula);
-                        Reptil reptil = new Reptil(
+                        // Jaula jaula = Jaula.getJaula(idJaula);
+                        Carro carro = new Carro(
                             nome,
-                            especie,
-                            jaula,
-                            habitat
+                            placaCarro,
+                            corCarro
                         );
-                        System.out.println("Réptil cadastrado com sucesso!");
-                        System.out.println(reptil);
+                        System.out.println("Carro cadastrado com sucesso!");
+                        System.out.println(carro);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                     break;
                 case "B":
-                    System.out.println("Informe a cor da pena:");
-                    String corPena = scanner.next();
-                    System.out.println("Informe o número da jaula:");
-                    idJaula = scanner.nextInt();
+                    System.out.println("Informe a marca da Bike:");
+                    String marcaBike = scanner.next();
+                    System.out.println("Informe a cor da Bike:");
+                    String corBike = scanner.next();
                     try {
-                        Jaula jaula = Jaula.getJaula(idJaula);
-                        Ave ave = new Ave(
+                        // Jaula jaula = Jaula.getJaula(idJaula);
+                        Bicicleta bicicleta = new Bicicleta(
                             nome,
-                            especie,
-                            jaula,
-                            corPena
+                            marcaBike,
+                            corBike
                         );
                         System.out.println("Ave cadastrada com sucesso!");
-                        System.out.println(ave);
+                        System.out.println(boolean);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -136,164 +134,132 @@ public class Estacionamento {
             }
         }
     
-        public static void cadastrarJaula(Scanner scanner) {
-            System.out.println("Cadastrar jaula");
-            System.out.println("Informe o nome da jaula:");
-            String nome = scanner.next();
-            System.out.println("Informe o tipo da jaula:");
+        public static void cadastrarVaga(Scanner scanner) {
+            System.out.println("Cadastrar Vaga");
+            System.out.println("Informe o numero da vaga:");
+            String numero = scanner.next();
+            System.out.println("Cadastre o tipo da vaga, informando para qual dos veiculos a vaga pertence ([M] Moto; [C] Carro; [B] Bicicleta):");
             String tipo = scanner.next();
-            Jaula jaula = new Jaula(nome, tipo);
-            System.out.println("Jaula cadastrada com sucesso!");
-            System.out.println(jaula);
-        }
-    
-        public static void cadastrarAlimentacao(Scanner scanner) {
-            System.out.println("Cadastrar alimentação");
-            System.out.println("Informe a data da alimentação:");
-            String data = scanner.next();
-            System.out.println("Informe a descrição da alimentação:");
-            String descricao = scanner.next();
-            System.out.println("Informe a espécie: ");
-            String especie = scanner.next();
-            System.out.println("Informe o número do animal:");
-            int idAnimal = scanner.nextInt();
-            try {
-                Animal animal = null;
-                switch (especie) {
+                switch (tipo) {
                     case "M":
-                        animal = Mamifero.getMamifero(idAnimal);
+                        veiculo = Moto.getMoto(idVeiculo);
                         break;
-                    case "R":
-                        animal = Reptil.getReptil(idAnimal);
+                    case "C":
+                        veiculo = Carro.getCarro(idVeiculo);
                         break;
-                    case "A":
-                        animal = Ave.getAve(idAnimal);
+                    case "B":
+                        veiculo = Bicicleta.getBicicleta(idVeiculo);
                         break;
                     default:
                         break;
                 }
-                if (animal == null) {
-                    throw new Exception("Animal não existe");
+                if (veiculo == null) {
+                    throw new Exception("Veiculo não existe");
                 }
-                Alimentacao alimentacao = new Alimentacao(data, descricao, animal);
-                System.out.println("Alimentação cadastrada com sucesso!");
-                System.out.println(alimentacao);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            System.out.println("Cadastre o tamanho da vaga: ");
+            String tamanho = scanner.next();
+            System.out.println("Cadastre o valor da vaga: ");
+            String preco = scanner.next();
+            System.out.println("Cadastre o id da locação aonde se encontra a vaga: ");
+            int idLocacao = scanner.nextInt();
+           
+            Vaga vaga = new Vaga(numero, tipo, tamanho, preco, idLocacao);
+            System.out.println("Vaga cadastrada com sucesso!");
+            System.out.println(vaga);
         }
     
-        public static void cadastrarLimpeza(Scanner scanner) {
-            System.out.println("Cadastrar limpeza");
-            System.out.println("Informe a data da limpeza:");
+        public static void cadastrarLocacao(Scanner scanner) {
+            System.out.println("Cadastrar locação");
+            System.out.println("Informe a data da locação:");
             String data = scanner.next();
-            System.out.println("Informe a descrição da limpeza:");
-            String descricao = scanner.next();
-            System.out.println("Informe o número da jaula:");
-            int idJaula = scanner.nextInt();
             try {
-                Jaula jaula = Jaula.getJaula(idJaula);
-                Limpeza limpeza = new Limpeza(data, descricao, jaula);
-                System.out.println("Limpeza cadastrada com sucesso!");
-                System.out.println(limpeza);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+                    Jaula jaula = Jaula.getJaula(idJaula);
+                    Locacao locacao = new Locacao(data);
+                    System.out.println("Locação cadastrada com sucesso!");
+                    System.out.println(locacao);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                
+        }
+    
+    
+    
+        public static void listarVeiculos() {
+            System.out.println("Listar motos");
+            for (Moto moto : Moto.getMotos()) {
+                System.out.println(moto);
+            }
+            System.out.println("Listar carros");
+            for (Carro carro : Carro.getCarros()) {
+                System.out.println(carro);
+            }
+            System.out.println("Listar bikes");
+            for (Bicicleta bicicleta : Bicicleta.getBicicletas()) {
+                System.out.println(bicicleta);
             }
         }
     
-        public static void listarAlimentacoes() {
-            System.out.println("Listar alimentações");
-            for (Alimentacao alimentacao : Alimentacao.getAlimentacoes()) {
-                System.out.println(alimentacao);
+        public static void listarVagas() {
+            System.out.println("Listar vagas");
+            for (Vaga vaga : Vaga.getVagas()) {
+                System.out.println(vaga);
+            }
+        }
+
+        public static void listarLocacoes() {
+            System.out.println("Listar vagas");
+            for (Locacao locacao : Locacao.getLocacoes()) {
+                System.out.println(locacao);
             }
         }
     
-        public static void listarLimpezas() {
-            System.out.println("Listar limpezas");
-            for (Limpeza limpeza : Limpeza.getLimpezas()) {
-                System.out.println(limpeza);
-            }
-        }
-    
-        public static void listarAnimais() {
-            System.out.println("Listar aves");
-            for (Ave ave : Ave.getAves()) {
-                System.out.println(ave);
-            }
-            System.out.println("Listar mamíferos");
-            for (Mamifero mamifero : Mamifero.getMamiferos()) {
-                System.out.println(mamifero);
-            }
-            System.out.println("Listar répteis");
-            for (Reptil reptil : Reptil.getRepteis()) {
-                System.out.println(reptil);
-            }
-        }
-    
-        public static void listarJaulas() {
-            System.out.println("Listar jaulas");
-            for (Jaula jaula : Jaula.getJaulas()) {
-                System.out.println(jaula);
-            }
-        }
-    
-        public static void removerAnimal(Scanner scanner) {
-            System.out.println("Remover animal");
-            System.out.println("Informe a espécie: ");
-            String especie = scanner.next();
-            System.out.println("Informe o número do animal:");
+        public static void removerVeiculo(Scanner scanner) {
+            System.out.println("Remover veiculo");
+            System.out.println("Informe o Id do veiculo:");
             int idAnimal = scanner.nextInt();
+            System.out.println("Informe o tipo ([M] Moto; [C] Carro; [B] Bicicleta): ");
+            String tipoVeiculo = scanner.next();
+
             try {
-                switch (especie) {
+                switch (tipoVeiculo) {
                     case "M":
-                        Mamifero.removeMamifero(idAnimal);
+                        Moto.removeMoto(idAnimal);
                         break;
-                    case "R":
-                        Reptil.removeReptil(idAnimal);
+                    case "C":
+                        Carro.removeCarro(idAnimal);
                         break;
-                    case "A":
-                        Ave.removeAve(idAnimal);
+                    case "B":
+                        Bicicleta.removeBicicleta(idAnimal);
                         break;
                     default:
                         break;
                 }
-                System.out.println("Animal removido com sucesso!");
+                System.out.println("Veiculo removido com sucesso!");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
     
-        public static void removerJaula(Scanner scanner) {
-            System.out.println("Remover jaula");
-            System.out.println("Informe o número da jaula:");
-            int idJaula = scanner.nextInt();
+        public static void removerVaga(Scanner scanner) {
+            System.out.println("Remover Vaga");
+            System.out.println("Informe o número da vaga:");
+            int idVaga = scanner.nextInt();
             try {
-                Jaula.removeJaula(idJaula);
-                System.out.println("Jaula removida com sucesso!");
+                Vaga.removeVaga(idVaga);
+                System.out.println("Vaga removida com sucesso!");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
     
-        public static void removerLimpeza(Scanner scanner) {
-            System.out.println("Remover limpeza");
-            System.out.println("Informe o número da limpeza:");
-            int idLimpeza = scanner.nextInt();
+        public static void removerLocacao(Scanner scanner) {
+            System.out.println("Remover locação");
+            System.out.println("Informe o número da locação:");
+            int idLocacao = scanner.nextInt();
             try {
-                Limpeza.removeLimpeza(idLimpeza);
-                System.out.println("Limpeza removida com sucesso!");
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    
-        public static void removerAlimentacao(Scanner scanner) {
-            System.out.println("Remover alimentação");
-            System.out.println("Informe o número da alimentação:");
-            int idAlimentacao = scanner.nextInt();
-            try {
-                Alimentacao.removeAlimentacao(idAlimentacao);
-                System.out.println("Alimentação removida com sucesso!");
+                Locacao.removeLocacao(idLocacao);
+                System.out.println("Locação removida com sucesso!");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }

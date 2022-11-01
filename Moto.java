@@ -9,7 +9,7 @@ public class Moto extends Veiculo {
     
     public Moto(
         String nome,
-        Vaga vaga,      
+        // Vaga vaga,      
         String placaMoto,
         int cilindrada
     ) {
