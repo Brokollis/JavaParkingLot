@@ -9,11 +9,11 @@ public class Moto extends Veiculo {
     
     public Moto(
         String nome,
-        // Vaga vaga,      
+        Locacao locacao,      
         String placaMoto,
         int cilindrada
     ) {
-        super(GetId.getNextId(motos), nome, vaga);
+        super(GetId.getNextId(motos), nome, locacao);
         this.placaMoto = placaMoto;
         this.cilindrada = cilindrada;
 
@@ -28,11 +28,11 @@ public class Moto extends Veiculo {
         this.placaMoto = placaMoto;
     }
 
-    public String getCilindrada() {
+    public int getCilindrada() {
         return cilindrada;
     }
     
-    public void setCilindrada(String cilindrada) {
+    public void setCilindrada(int cilindrada) {
         this.cilindrada = cilindrada;
     }
     public static ArrayList<Moto> getMotos() {
@@ -55,9 +55,8 @@ public class Moto extends Veiculo {
     
     @Override
     public String toString() {
-        return super.toString() + "Placa da moto =" + placaMoto + "\n";
-    }
-    public String toString() {
-        return super.toString() + "Cilindrada da moto =" + cilindrada + "\n";
+        return super.toString() 
+        + "Placa da moto =" + placaMoto + "\n"
+            + "Cilindrada =" + cilindrada;
     }
 }

@@ -36,7 +36,7 @@ public class Locacao implements GetId {
         this.data = data;
     }
 
-    public static ArrayList<Veiculo> getVeiculo() {
+    public ArrayList<Veiculo> getVeiculo() {
         return veiculos;
     }
 
@@ -44,12 +44,16 @@ public class Locacao implements GetId {
         this.veiculos.add(veiculo);
     }
 
-    public static ArrayList<Vaga> getVagas() {
+    public ArrayList<Vaga> getVagas() {
         return vagas;
     }
 
     public void setVagas(Vaga vaga) {
         this.vagas.add(vaga);
+    }
+
+    public static ArrayList<Locacao> getLocacoes() {
+        return locacoes;
     }
 
     public static Locacao getLocacao(int id) throws Exception {
@@ -69,8 +73,7 @@ public class Locacao implements GetId {
     @Override
     public String toString() {
         return "Id=" + id + "\n"
-            + "Data=" + data + "\n"
-            + "Vaga=" + vaga.getNumero() + "\n";
+            + "Data=" + data + "\n";
     }
 
 }

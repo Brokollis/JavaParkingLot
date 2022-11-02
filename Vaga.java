@@ -20,9 +20,9 @@ public class Vaga implements GetId {
         this.tipo = tipo;
         this.tamanho = tamanho;
         this.preco = preco;
+        this.idLocacao = locacao.getId();
+        this.locacao = locacao;
 
-        // this.veiculos = new ArrayList<>();
-        // this.locacoes = new ArrayList<>();
         locacao.setVagas(this);
         vagas.add(this);
     }
@@ -80,21 +80,6 @@ public class Vaga implements GetId {
         return vagas;
     }
 
-    // public void setAnimal(Veiculo veiculo) {
-    //     this.veiculos.add(veiculo);
-    // }
-
-    // public ArrayList<Locacao> getLocacoes() {
-    //     return locacoes;
-    // }
-
-    // public void setLimpezas(Locacao locacao) {
-    //     this.locacoes.add(locacao);
-    // }
-
-    // public static ArrayList<Vaga> getVagas() {
-    //     return vagas;
-    // }
 
     public static Vaga getVaga(int id) throws Exception {
         for (Vaga vaga : vagas) {

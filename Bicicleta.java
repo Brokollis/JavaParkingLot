@@ -9,15 +9,15 @@ public class Bicicleta extends Veiculo {
     
     public Bicicleta(
         String nome,
-        Vaga vaga,      
+        Locacao locacao,      
         String marcaBike,
         String corBike
     ) {
-        super(GetId.getNextId(bicicletas), nome, vaga);
+        super(GetId.getNextId(bicicletas), nome, locacao);
         this.marcaBike = marcaBike;
         this.corBike = corBike;
 
-        veiculos.add(this);
+        bicicletas.add(this);
     }
     
     public String getMarcaBike() {
@@ -55,9 +55,9 @@ public class Bicicleta extends Veiculo {
     
     @Override
     public String toString() {
-        return super.toString() + "Marca da bicicleta =" + marcaBike + "\n";
+        return super.toString() 
+        + "Marca da bicicleta =" + marcaBike + "\n"
+        + "Cor da bicicleta =" + corBike + "\n";
     }
-    public String toString() {
-        return super.toString() + "Cor da bicicleta=" + corBike + "\n";
-    }
+    
 }

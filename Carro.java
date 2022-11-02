@@ -3,17 +3,17 @@ import java.util.ArrayList;
 public class Carro extends Veiculo {
 
     private String placaCarro;
-    private String corCarro;
+    private String corCarro;    
 
     private static ArrayList<Carro> carros = new ArrayList<>();
     
     public Carro(
         String nome,
-        Vaga vaga,      
+        Locacao locacao,      
         String placaCarro,
         String corCarro
     ) {
-        super(GetId.getNextId(carros), nome, vaga);
+        super(GetId.getNextId(carros), nome, locacao);
         this.placaCarro = placaCarro;
         this.corCarro = corCarro;
 
@@ -55,8 +55,8 @@ public class Carro extends Veiculo {
     
     @Override
     public String toString() {
-        return super.toString() + "Marca da bicicleta =" + marcaBike + "\n"
-                                + "Cor da bicicleta=" + corBike + "\n";
+        return super.toString()
+            + "Cor da bicicleta=" + corCarro + "\n";
     }
 
 }

@@ -4,17 +4,13 @@ public abstract class Veiculo implements GetId {
 
     private int id;
     private String nome;
-    private int idLocacao;
-    private Locacao locacao;
+    private ArrayList<Locacao> locacoes;
 
-    protected Veiculo(int id, String nome, Locacao locacao) {
+    protected Veiculo(int id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.idLocacao = locacao.getId();
-        this.locacao = locacao;
 
-        locacao.setVeiculo(this);
-        // this.alimentacoes = new ArrayList<>();
+        this.locacoes = new ArrayList<>();
     }
 
     public int getId() {
@@ -33,7 +29,6 @@ public abstract class Veiculo implements GetId {
         this.nome = nome;
     }
 
-
     public Locacao getLocacao() {
         return locacao;
     }
@@ -42,19 +37,12 @@ public abstract class Veiculo implements GetId {
         this.locacao = locacao;
     }
 
-    // public ArrayList<Alimentacao> getAlimentacoes() {
-    //     return alimentacoes;
-    // }
-
-    // public void setAlimentacoes(Alimentacao alimentacao) {
-    //     this.alimentacoes.add(alimentacao);
-    // }
 
     @Override
     public String toString() {
         return "Id=" + id + "\n"
             + "Nome=" + nome + "\n"
-            + "Vaga=" + locacao.getNumero() + "\n";
+            + "Vaga=" + locacao.getId() + "\n";
     }
 
 }
