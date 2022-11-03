@@ -71,87 +71,142 @@ public class Estacionamento {
         String nome = scanner.next();
         System.out.println("Digite o tipo: ([M] Moto; [C] Carro; [B] Bicicleta)");
         String tipo = scanner.next();
-        switch (tipo) {
-            case "M":
-                System.out.println("Informe a placa da moto:");
-                String placaMoto = scanner.next();
-                System.out.println("Informe a quantidade de cilindradas da moto:");
-                int cilindrada = scanner.nextInt();
-                System.out.println("Informe o id da locação da moto:");
-                int idLocacao = scanner.nextInt();
-                try {
-                    Locacao locacao = Locacao.getLocacao(idLocacao);
-                    Moto moto = new Moto(
-                        nome,
-                        placaMoto,
-                        cilindrada,
-                        locacao
-                    );
-                    System.out.println("Moto cadastrada com sucesso!");
-                    System.out.println(moto);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-            case "C":
-                System.out.println("Informe a placa do carro:");
-                String placaCarro = scanner.next();
-                System.out.println("Informe a cor do carro:");
-                String corCarro = scanner.next();
-                System.out.println("Informe o id da locação da moto:");
-                idLocacao = scanner.nextInt();
-                try {
-                    Locacao locacao = Locacao.getLocacao(idLocacao);
-                    Carro carro = new Carro(
-                        nome,
-                        placaCarro,
-                        corCarro,
-                        locacao
-                    );
-                    System.out.println("Carro cadastrado com sucesso!");
-                    System.out.println(carro);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-            case "B":
-                System.out.println("Informe a marca da Bike:");
-                String marcaBike = scanner.next();
-                System.out.println("Informe a cor da Bike:");
-                String corBike = scanner.next();
-                System.out.println("Informe o id da locação da moto:");
-                idLocacao = scanner.nextInt();
-                try {
-                    Locacao locacao = Locacao.getLocacao(idLocacao);                    
-                    Bicicleta bicicleta = new Bicicleta(
-                        nome,
-                        marcaBike,
-                        corBike,
-                        locacao
-                    );
-                    System.out.println("Bicicleta cadastrada com sucesso!");
-                    System.out.println(bicicleta);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-            default:
-                break;
+        try{
+            switch (tipo) {
+                case "M":
+                    System.out.println("Informe a placa da moto:");
+                    String placaMoto = scanner.next();
+                    System.out.println("Informe a quantidade de cilindradas da moto:");
+                    int cilindrada = scanner.nextInt();
+                    try {
+                        Moto moto = new Moto(
+                            nome,
+                            placaMoto,
+                            cilindrada
+                        );
+                        System.out.println("Moto cadastrada com sucesso!");
+                        System.out.println(moto);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case "C":
+                    System.out.println("Informe a placa do carro:");
+                    String placaCarro = scanner.next();
+                    System.out.println("Informe a cor do carro:");
+                    String corCarro = scanner.next();
+                    try {
+                        Carro carro = new Carro(
+                            nome,
+                            placaCarro,
+                            corCarro
+                        );
+                        System.out.println("Carro cadastrado com sucesso!");
+                        System.out.println(carro);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case "B":
+                    System.out.println("Informe a marca da Bike:");
+                    String marcaBike = scanner.next();
+                    System.out.println("Informe a cor da Bike:");
+                    String corBike = scanner.next();
+                    try {
+                        Bicicleta bicicleta = new Bicicleta(
+                            nome,
+                            marcaBike,
+                            corBike
+                        );
+                        System.out.println("Bicicleta cadastrada com sucesso!");
+                        System.out.println(bicicleta);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
     public static void cadastrarVaga(Scanner scanner) {
         System.out.println("Cadastrar Vaga");
         System.out.println("Informe o numero da vaga:");
-        String numero = scanner.next();
-        System.out.println("Cadastre o tipo da vaga, informando para qual dos veiculos a vaga pertence ([M] Moto; [C] Carro; [B] Bicicleta):");
-        String tipo = scanner.next();
-            switch (tipo) {
+        int numero = scanner.nextInt();
+        System.out.println("Cadastre o tipo da vaga, informando para qual dos veiculos a vaga pertence \n ([M] Moto; [C] Carro; [B] Bicicleta):");
+        String tipoVaga = scanner.next();
+        try{
+            switch (tipoVaga) {
                 case "M":
-                    veiculo = Moto.getMoto(idVeiculo);
+                tipoVaga = "Moto";
                     break;
                 case "C":
+                tipoVaga = "Carro";
+                    break;
+                case "B":
+                tipoVaga = "Bicicleta";
+                    break;
+                default:
+                    break;
+            }
+            if (tipoVaga == null) {
+                System.out.println("Veiculo não existe");
+            }
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+            System.out.println("Cadastre o tamanho da vaga \n ([P] Pequeno; [M] Médio; [G] Grande): ");
+            String tamanho = scanner.next();
+        try {
+            switch (tamanho) {
+                case "P":
+                tamanho = "Pequeno";
+                    break;
+                case "M":
+                tamanho = "Médio";
+                    break;
+                case "G":
+                tamanho = "Grande";
+                    break;
+                default:
+                    break;
+            }
+            if (tamanho == null) {
+                System.out.println("Tamanho não existe");
+            }       
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+            System.out.println("Cadastre o valor da vaga: ");
+            Double preco = scanner.nextDouble();
+            
+            Vaga vaga = new Vaga(numero, tipoVaga, tamanho, preco);
+            System.out.println("Vaga cadastrada com sucesso!");
+            System.out.println(vaga);
+    }
+
+
+    public static void cadastrarLocacao(Scanner scanner) {
+        System.out.println("Cadastrar locação");
+        System.out.println("Informe a data da locação:");
+        String data = scanner.next();
+        System.out.println("Digite o id da vaga: ");
+        try {
+            int idVaga = scanner.nextInt();
+            Vaga vaga = Vaga.getVaga(idVaga);
+            System.out.println("Digite o id do veiculo: ");
+            int idVeiculo = scanner.nextInt();
+            String tipo = vaga.getTipo();
+            Veiculo veiculo = null;
+            switch (tipo) {
+                case "C":
                     veiculo = Carro.getCarro(idVeiculo);
+                    break;
+                case "M":
+                    veiculo = Moto.getMoto(idVeiculo);
                     break;
                 case "B":
                     veiculo = Bicicleta.getBicicleta(idVeiculo);
@@ -162,84 +217,74 @@ public class Estacionamento {
             if (veiculo == null) {
                 throw new Exception("Veiculo não existe");
             }
-        System.out.println("Cadastre o tamanho da vaga: ");
-        String tamanho = scanner.next();
-        System.out.println("Cadastre o valor da vaga: ");
-        String preco = scanner.next();
-        System.out.println("Cadastre o id do veiculo aonde se encontra a vaga: ");
-        int idLocacao = scanner.nextInt();
-        
-        Vaga vaga = new Vaga(numero, tipo, tamanho, preco, idLocacao);
-        System.out.println("Vaga cadastrada com sucesso!");
-        System.out.println(vaga);
-    }
+            Locacao locacao = new Locacao(data, veiculo, vaga);
+            System.out.println("Locação cadastrada com sucesso!");
+            System.out.println(locacao);
 
-    public static void cadastrarLocacao(Scanner scanner) {
-        System.out.println("Cadastrar locação");
-        System.out.println("Informe a data da locação:");
-        String data = scanner.next();
-        System.out.println("Informe o id da vaga da locação: ");
-        int idVaga = scanner.nextInt();
-        System.out.println("Informe o id do veiculo: ");
-        int idVeiculo = scanner.nextInt();
-        try {
-                Locacao locacao = new Locacao(data, idVaga, idVeiculo);
-                System.out.println("Locação cadastrada com sucesso!");
-                System.out.println(locacao);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
-
 
 
     public static void listarVeiculos() {
-        System.out.println("Listar motos");
-        for (Moto moto : Moto.getMotos()) {
-            System.out.println(moto);
-        }
-        System.out.println("Listar carros");
-        for (Carro carro : Carro.getCarros()) {
-            System.out.println(carro);
-        }
-        System.out.println("Listar bikes");
-        for (Bicicleta bicicleta : Bicicleta.getBicicletas()) {
-            System.out.println(bicicleta);
+        try{
+            System.out.println("Listar motos");
+            for (Moto moto : Moto.getMotos()) {
+                System.out.println(moto);
+            }
+            System.out.println("Listar carros");
+            for (Carro carro : Carro.getCarros()) {
+                System.out.println(carro);
+            }
+            System.out.println("Listar bikes");
+            for (Bicicleta bicicleta : Bicicleta.getBicicletas()) {
+                System.out.println(bicicleta);
+            }
+        }catch(Exception e) {
+            System.out.println("Erro ao listar veioculos " + e.getMessage());
         }
     }
 
     public static void listarVagas() {
-        System.out.println("Listar vagas");
-        for (Vaga vaga : Vaga.getVagas()) {
-            System.out.println(vaga);
+        try{
+            System.out.println("Listar vagas");
+            for (Vaga vaga : Vaga.getVagas()) {
+                System.out.println(vaga);
+            }
+        }catch(Exception e) {
+            System.out.println("Erro ao listar vagas " + e.getMessage());
         }
     }
 
     public static void listarLocacoes() {
-        System.out.println("Listar vagas");
-        for (Locacao locacao : Locacao.getLocacoes()) {
-            System.out.println(locacao);
+        try{
+            System.out.println("Listar locações");
+            for (Locacao locacao : Locacao.getLocacoes()) {
+                System.out.println(locacao);
+            }
+        }catch(Exception e) {
+            System.out.println("Erro ao listar locações " + e.getMessage());
         }
     }
 
     public static void removerVeiculo(Scanner scanner) {
         System.out.println("Remover veiculo");
         System.out.println("Informe o Id do veiculo:");
-        int idAnimal = scanner.nextInt();
+        int idVeiculo = scanner.nextInt();
         System.out.println("Informe o tipo ([M] Moto; [C] Carro; [B] Bicicleta): ");
         String tipoVeiculo = scanner.next();
 
         try {
             switch (tipoVeiculo) {
                 case "M":
-                    Moto.removeMoto(idAnimal);
+                    Moto.removeMoto(idVeiculo);
                     break;
                 case "C":
-                    Carro.removeCarro(idAnimal);
+                    Carro.removeCarro(idVeiculo);
                     break;
                 case "B":
-                    Bicicleta.removeBicicleta(idAnimal);
+                    Bicicleta.removeBicicleta(idVeiculo);
                     break;
                 default:
                     break;
@@ -252,7 +297,7 @@ public class Estacionamento {
 
     public static void removerVaga(Scanner scanner) {
         System.out.println("Remover Vaga");
-        System.out.println("Informe o número da vaga:");
+        System.out.println("Informe o Id da vaga:");
         int idVaga = scanner.nextInt();
         try {
             Vaga.removeVaga(idVaga);
@@ -264,7 +309,7 @@ public class Estacionamento {
 
     public static void removerLocacao(Scanner scanner) {
         System.out.println("Remover locação");
-        System.out.println("Informe o número da locação:");
+        System.out.println("Informe o Id da locação:");
         int idLocacao = scanner.nextInt();
         try {
             Locacao.removeLocacao(idLocacao);

@@ -9,11 +9,10 @@ public class Bicicleta extends Veiculo {
     
     public Bicicleta(
         String nome,
-        Locacao locacao,      
         String marcaBike,
         String corBike
     ) {
-        super(GetId.getNextId(bicicletas), nome, locacao);
+        super(GetId.getNextId(bicicletas), nome);
         this.marcaBike = marcaBike;
         this.corBike = corBike;
 

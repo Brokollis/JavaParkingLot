@@ -4,26 +4,22 @@ public class Vaga implements GetId {
     
     private int id;
     private int numero;
-    private String tipo;
+    private String tipoVaga;
     private String tamanho;
-    private int preco;
-    private int idLocacao;
-    private Locacao locacao;
-    // private ArrayList<Veiculo> veiculos;
-    // private ArrayList<Locacao> locacoes;
+    private double preco;
+    private ArrayList<Locacao> locacoes;
 
     private static ArrayList<Vaga> vagas = new ArrayList<>();
 
-    public Vaga(int numero, String tipo, String tamanho, int preco, Locacao locacao) {
+    public Vaga(int numero, String tipoVaga, String tamanho, Double preco) {
         this.id = GetId.getNextId(vagas);
         this.numero = numero;
-        this.tipo = tipo;
+        this.tipoVaga = tipoVaga;
         this.tamanho = tamanho;
         this.preco = preco;
-        this.idLocacao = locacao.getId();
-        this.locacao = locacao;
 
-        locacao.setVagas(this);
+        this.locacoes = new ArrayList<>();
+
         vagas.add(this);
     }
 
@@ -36,18 +32,14 @@ public class Vaga implements GetId {
     }
 
     public String getTipo() {
-        return tipo;
+        return tipoVaga;
     }
 
     public String getTamanho() {
         return tamanho;
     }
-    public int getPreco() {
+    public double getPreco() {
         return preco;
-    }
-
-    public Locacao getLocacao() {
-        return locacao;
     }
 
 
@@ -60,23 +52,23 @@ public class Vaga implements GetId {
         this.numero = numero;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipo(String tipoVaga) {
+        this.tipoVaga = tipoVaga;
     }
 
     public void setTamanho(String tamanho) {
         this.tamanho = tamanho;
     }
 
-    public void setPreco(int preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }   
 
-    public void setLocacao(Locacao locacao) {
-        this.locacao = locacao;
+    public void setLocacoes(Locacao locacao) {
+        this.locacoes.add(locacao);
     } 
 
-    public ArrayList<Vaga> getVagas() {
+    public static ArrayList<Vaga> getVagas() {
         return vagas;
     }
 
@@ -97,12 +89,11 @@ public class Vaga implements GetId {
 
     @Override
     public String toString() {
-        return "Id=" + id + "\n"
-            + "Numero=" + numero + "\n"
-            + "Tipo=" + tipo + "\n"
-            + "Tamanho=" + tamanho + "\n"
-            + "Preco=" + preco + "\n"
-            + "Locação=" + locacao + "\n";
+        return "Id= " + id + "\n"
+            + "Numero= " + numero + "\n"
+            + "Tipo= " + tipoVaga + "\n"
+            + "Tamanho= " + tamanho + "\n"
+            + "Preco= " + preco + "\n";
     }
 
 }

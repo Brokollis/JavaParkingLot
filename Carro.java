@@ -9,11 +9,10 @@ public class Carro extends Veiculo {
     
     public Carro(
         String nome,
-        Locacao locacao,      
         String placaCarro,
         String corCarro
     ) {
-        super(GetId.getNextId(carros), nome, locacao);
+        super(GetId.getNextId(carros), nome);
         this.placaCarro = placaCarro;
         this.corCarro = corCarro;
 
@@ -56,7 +55,8 @@ public class Carro extends Veiculo {
     @Override
     public String toString() {
         return super.toString()
-            + "Cor da bicicleta=" + corCarro + "\n";
+        + "Placa do carro=" + placaCarro + "\n "
+            + "Cor do carro=" + corCarro + "\n ";
     }
 
 }

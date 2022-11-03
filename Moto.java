@@ -9,11 +9,10 @@ public class Moto extends Veiculo {
     
     public Moto(
         String nome,
-        Locacao locacao,      
         String placaMoto,
         int cilindrada
     ) {
-        super(GetId.getNextId(motos), nome, locacao);
+        super(GetId.getNextId(motos), nome);
         this.placaMoto = placaMoto;
         this.cilindrada = cilindrada;
 

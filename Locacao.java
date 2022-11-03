@@ -4,19 +4,24 @@ public class Locacao implements GetId {
     
     private int id;
     private String data;
-    private ArrayList<Veiculo> veiculos;
-    private ArrayList<Vaga> vagas;
+    private int idVeiculo;
+    private Veiculo veiculo;
+    private int idVaga;
+    private Vaga vaga;
     
     private static ArrayList<Locacao> locacoes = new ArrayList<>();
 
-    public Locacao(String data) {
+    public Locacao(String data, Veiculo veiculo, Vaga vaga ) {
         this.id = GetId.getNextId(locacoes);
         this.data = data;
+        this.idVeiculo = veiculo.getId();
+        this.veiculo = veiculo;  
+        this.idVaga = vaga.getId();
+        this.vaga = vaga;    
 
-        this.veiculos = new ArrayList<>();
-        this.vagas = new ArrayList<>();
 
-
+        veiculo.setLocacoes(this);
+        vaga.setLocacoes(this);
         locacoes.add(this);
     }
 
@@ -28,6 +33,14 @@ public class Locacao implements GetId {
         return data;
     }
 
+    public Veiculo GetVeiculo() {
+        return veiculo;
+    }
+
+    public Vaga GetVaga() {
+        return vaga;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -36,23 +49,17 @@ public class Locacao implements GetId {
         this.data = data;
     }
 
-    public ArrayList<Veiculo> getVeiculo() {
-        return veiculos;
-    }
-
-    public void setVeiculo(Veiculo veiculo) {
-        this.veiculos.add(veiculo);
-    }
-
-    public ArrayList<Vaga> getVagas() {
-        return vagas;
+    public void SetVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+        this.idVeiculo = veiculo.getId();
     }
 
     public void setVagas(Vaga vaga) {
-        this.vagas.add(vaga);
+        this.vaga = vaga;
+        this.idVeiculo = veiculo.getId();
     }
 
-    public static ArrayList<Locacao> getLocacoes() {
+    public static  ArrayList<Locacao> getLocacoes() {
         return locacoes;
     }
 

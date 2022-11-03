@@ -21,6 +21,10 @@ public abstract class Veiculo implements GetId {
         return nome;
     }
 
+    public ArrayList<Locacao> getLocacoes() {
+        return locacoes;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -29,20 +33,14 @@ public abstract class Veiculo implements GetId {
         this.nome = nome;
     }
 
-    public Locacao getLocacao() {
-        return locacao;
+    public void setLocacoes(Locacao locacoes) {
+        this.locacoes.add(locacoes);
     }
-
-    public void setLocacao(Locacao locacao) {
-        this.locacao = locacao;
-    }
-
 
     @Override
     public String toString() {
-        return "Id=" + id + "\n"
-            + "Nome=" + nome + "\n"
-            + "Vaga=" + locacao.getId() + "\n";
+        return "Id=" + id + "\n "
+            + "Nome=" + nome + "\n ";
     }
 
 }
