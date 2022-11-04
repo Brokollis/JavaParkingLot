@@ -1,3 +1,4 @@
+package src.app;
 import java.util.ArrayList;
 
 public class Locacao implements GetId {

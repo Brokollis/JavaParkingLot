@@ -1,3 +1,4 @@
+package src.app;
 public class Chave<S, N extends Number> {
     private S letras;
     private N numeros;
