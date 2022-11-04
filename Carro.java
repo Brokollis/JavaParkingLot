@@ -2,36 +2,37 @@ import java.util.ArrayList;
 
 public class Carro extends Veiculo {
 
-    private String placaCarro;
+    private Chave<String, Integer> placaCarro;
     private String corCarro;    
 
     private static ArrayList<Carro> carros = new ArrayList<>();
     
     public Carro(
         String nome,
-        String placaCarro,
+        String placaLetra,
+        int placaNumero,
         String corCarro
     ) {
         super(GetId.getNextId(carros), nome);
-        this.placaCarro = placaCarro;
-        this.corCarro = corCarro;
+        this.setPlacaCarro(placaLetra, placaNumero);
+        this.setCorCarro(corCarro);
 
         carros.add(this);
     }
     
-    public String getPlacaCarro() {
+    public Chave<String, Integer> getPlacaCarro() {
         return placaCarro;
     }
     
-    public void setPlacaCarro(String placaCarro) {
-        this.placaCarro = placaCarro;
+    private void setPlacaCarro(String placaLetra, int placaNumero) {
+        this.placaCarro = new Chave<String,Integer>(placaLetra, placaNumero);
     }
 
     public String getCorCarro() {
         return corCarro;
     }
     
-    public void setCorCarro(String corCarro) {
+    private void setCorCarro(String corCarro) {
         this.corCarro = corCarro;
     }
     public static ArrayList<Carro> getCarros() {

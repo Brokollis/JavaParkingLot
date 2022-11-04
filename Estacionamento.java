@@ -91,14 +91,17 @@ public class Estacionamento {
                     }
                     break;
                 case "C":
-                    System.out.println("Informe a placa do carro:");
-                    String placaCarro = scanner.next();
+                    System.out.println("Informe as 3 letras da placa do carro:");
+                    String placaLetra = scanner.next(); 
+                    System.out.println("Infore os 4 números da placa: ");
+                    int placaNumero = scanner.nextInt();
                     System.out.println("Informe a cor do carro:");
                     String corCarro = scanner.next();
                     try {
                         Carro carro = new Carro(
                             nome,
-                            placaCarro,
+                            placaLetra,
+                            placaNumero,
                             corCarro
                         );
                         System.out.println("Carro cadastrado com sucesso!");
@@ -134,8 +137,11 @@ public class Estacionamento {
 
     public static void cadastrarVaga(Scanner scanner) {
         System.out.println("Cadastrar Vaga");
-        System.out.println("Informe o numero da vaga:");
-        int numero = scanner.nextInt();
+        System.out.println("Informe o codigo da vaga. Uma letra e dois numeros:");
+        System.out.println("Informe a letra do codigo da Vaga");
+        int letraVaga = scanner.nextInt();
+        System.out.println("Informe os dois numeros do codigo da Vaga");
+        int numerosVaga = scanner.nextInt();
         System.out.println("Cadastre o tipo da vaga, informando para qual dos veiculos a vaga pertence \n ([M] Moto; [C] Carro; [B] Bicicleta):");
         String tipoVaga = scanner.next();
         try{
@@ -151,9 +157,6 @@ public class Estacionamento {
                     break;
                 default:
                     break;
-            }
-            if (tipoVaga == null) {
-                System.out.println("Veiculo não existe");
             }
         }catch (Exception e) {
             System.out.println(e.getMessage());
@@ -174,16 +177,13 @@ public class Estacionamento {
                 default:
                     break;
             }
-            if (tamanho == null) {
-                System.out.println("Tamanho não existe");
-            }       
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
             System.out.println("Cadastre o valor da vaga: ");
             Double preco = scanner.nextDouble();
             
-            Vaga vaga = new Vaga(numero, tipoVaga, tamanho, preco);
+            Vaga vaga = new Vaga(letraVaga,numerosVaga, tipoVaga, tamanho, preco);
             System.out.println("Vaga cadastrada com sucesso!");
             System.out.println(vaga);
     }

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Vaga implements GetId {
     
     private int id;
-    private int numero;
+    private Chave<String, Integer> placaCarro;
     private String tipoVaga;
     private String tamanho;
     private double preco;
@@ -11,8 +11,9 @@ public class Vaga implements GetId {
 
     private static ArrayList<Vaga> vagas = new ArrayList<>();
 
-    public Vaga(int numero, String tipoVaga, String tamanho, Double preco) {
+    public Vaga(int letraVaga,numerosVaga, String tipoVaga, String tamanho, Double preco) {
         this.id = GetId.getNextId(vagas);
+        this.setPlacaCarro(placaLetra, placaNumero);
         this.numero = numero;
         this.tipoVaga = tipoVaga;
         this.tamanho = tamanho;
