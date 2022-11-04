@@ -1,8 +1,11 @@
 # Prova-estacionamento
 
+
+
 <h1 align='center' justify= 'center'>Estacionamento do Freitas</h1>
 
-<img  align='center' justify= 'center' src="src\assets\estacionamento-logo.jpg" alt="logo aplicação"/>
+
+<img  align='center' justify= 'center'  width="600" height="600" src="src\assets\estacionamento-logo.jpg" alt="logo aplicação"/>
 
 <p align='center'> Estacionamento do Freitas é uma aplicação contruida na linguagem de programação Java, ela por sua vez tem como objetivo...</p>
 
